@@ -208,6 +208,10 @@
   .ach-row{
     display:grid; grid-template-columns:auto 1fr auto auto; align-items:center; gap:16px;
     background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px 20px; box-shadow:var(--shadow);
+    transition:all .15s ease;
+  }
+  .ach-row[style*="cursor:pointer"]:hover{
+    background:rgba(169,196,165,0.08); transform:translateY(-2px); box-shadow:0 12px 32px -12px rgba(120,100,80,0.3);
   }
   @media(max-width:640px){ .ach-row{grid-template-columns:auto 1fr; row-gap:8px;} .ach-row .ach-year, .ach-row .ach-level{grid-column:2;} }
   .medal{
@@ -223,6 +227,36 @@
   /* MC HIGHLIGHTS */
   .stage-list{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;}
   .stage-item{background:var(--card); border:1px solid var(--line); border-radius:999px; padding:8px 16px; font-size:0.85rem; box-shadow:var(--shadow);}
+
+  /* CV & DRIVE */
+  .doc-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  @media(max-width:760px){ .doc-grid{grid-template-columns:1fr;} }
+  .doc-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:14px;
+  }
+  .doc-icon{
+    width:44px; height:44px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+    font-size:1.3rem;
+  }
+  .doc-card h3{font-size:1.05rem; margin:0; font-family:'Fraunces',serif; font-weight:600;}
+  .doc-card p{font-size:0.88rem; color:var(--ink-soft); line-height:1.55; margin:0;}
+  .doc-card .btn{align-self:flex-start;}
+
+  /* CONTACT CHANNELS */
+  .contact-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:22px;}
+  .contact-card{
+    background:var(--card); border:1px solid var(--line); border-radius:18px; padding:18px 20px;
+    box-shadow:var(--shadow); display:flex; align-items:center; gap:14px; text-decoration:none; color:var(--ink);
+    transition:transform .15s ease;
+  }
+  .contact-card:hover{transform:translateY(-3px);}
+  .contact-icon{
+    width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem; flex-shrink:0;
+  }
+  .contact-label{font-size:0.78rem; color:var(--ink-soft); margin-bottom:2px;}
+  .contact-value{font-weight:700; font-size:0.92rem; word-break:break-word;}
 
   /* GUESTBOOK */
   .guestbook-box{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:26px; box-shadow:var(--shadow);}
@@ -275,6 +309,7 @@
       <a href="#about">About</a>
       <a href="#work">Leadership</a>
       <a href="#achievements">Achievements</a>
+      <a href="#cv">CV &amp; Drive</a>
       <a href="#guestbook">Guestbook</a>
       <a href="#connect">Connect</a>
     </div>
@@ -308,6 +343,12 @@
       <div class="prop-row"><span class="prop-label">🇬🇧 English</span><span class="prop-value pill pill-lav">Advanced</span></div>
       <div class="prop-row"><span class="prop-label">🇰🇷 Korean</span><span class="prop-value pill pill-sky">Intermediate</span></div>
       <div class="prop-row"><span class="prop-label">📌 Status</span><span class="prop-value pill pill-sage">Open for Diesnat 2026</span></div>
+
+      <!-- added contact buttons for profile -->
+      <div class="contact-buttons" style="margin-top:14px; display:flex; gap:8px;">
+        <a href="https://wa.me/6289521030102" class="contact-btn wa" style="text-decoration:none; padding:8px 12px; border-radius:10px; background:rgba(169,196,165,0.12); color:var(--sage-deep);"><span class="icon">💬</span> +6289521030102</a>
+        <a href="https://instagram.com/radistykda" class="contact-btn ig" style="text-decoration:none; padding:8px 12px; border-radius:10px; background:rgba(243,215,190,0.12); color:var(--peach-deep);"><span class="icon">📸</span> @radistykda</a>
+      </div>
     </div>
   </div>
 </header>
@@ -358,12 +399,10 @@
     <div class="filters" id="filters"></div>
     <div class="db-grid" id="work-grid"></div>
 
-    <div style="margin-top:34px;">
-      <h3 style="font-size:1rem; margin-bottom:10px;">On-Stage Highlights</h3>
-      <div class="stage-list">
-        <div class="stage-item">🎤 MC — Flight To Morphoza (2026)</div>
-        <div class="stage-item">🎤 MC — Various institutional events, SMK Telkom Malang</div>
-      </div>
+    <!-- added contact buttons for CV & Drive -->
+    <div class="contact-buttons" style="margin-top:14px; display:flex; gap:8px;">
+      <a href="https://wa.me/6289521030102" class="contact-btn wa" style="text-decoration:none; padding:8px 12px; border-radius:10px; background:rgba(169,196,165,0.12); color:var(--sage-deep);"><span class="icon">💬</span> +6289521030102</a>
+      <a href="https://instagram.com/radistykda" class="contact-btn ig" style="text-decoration:none; padding:8px 12px; border-radius:10px; background:rgba(243,215,190,0.12); color:var(--peach-deep);"><span class="icon">📸</span> @radistykda</a>
     </div>
   </div>
 </section>
@@ -375,6 +414,16 @@
       <h2 data-en="Achievements & Awards" data-id="Prestasi & Penghargaan">Achievements & Awards</h2>
     </div>
     <div class="ach-list" id="ach-list"></div>
+  </div>
+</section>
+
+<section id="cv">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag" data-en="Documents" data-id="Dokumen">Documents</div>
+      <h2 data-en="CV & Portfolio Drive" data-id="CV & Drive Portofolio">CV & Portfolio Drive</h2>
+    </div>
+    <div class="doc-grid" id="doc-grid"></div>
   </div>
 </section>
 
@@ -414,6 +463,7 @@
       <p data-en="I'd love the chance to bring this mix of systems thinking and stage energy to the committee. Reach out — I'll bring the run-of-show doc." data-id="Saya ingin sekali membawa perpaduan pemikiran sistematis dan energi panggung ini ke panitia. Hubungi saya — saya akan bawa run-of-show-nya.">I'd love the chance to bring this mix of systems thinking and stage energy to the committee. Reach out — I'll bring the run-of-show doc.</p>
       <button class="btn btn-primary" onclick="document.getElementById('guestbook').scrollIntoView()" data-en="Get in touch" data-id="Hubungi saya">Get in touch</button>
     </div>
+    <div class="contact-grid" id="contact-grid"></div>
     </div>
   </div>
 </section>
@@ -532,11 +582,11 @@ const LEVEL_META = {
 };
 
 const DEFAULT_WORK = [
-  {title:'Event Logistics Crew — BPJS Regional Event', meta:'Surabaya · Institutional', tag:'tech', tagLabel:'Logistics', desc:'Handled on-ground operational setup, material distribution, and behind-the-scenes execution for a regional institutional event — the work that makes a big event run on time.'},
+  {title:'Event Logistics Crew — BPJS Regional Event', meta:'Surabaya · Institutional', tag:'tech', tagLabel:'Logistics', desc:'Handled on-ground operational setup, material distribution, and behind-the-scenes execution for a regional institutional event — the work that makes a big event run on time.', link:'https://drive.google.com/drive/folders/18f4_ZHxhbINunx2mraZ5Kl36TcryO5H3?usp=sharing'},
   {title:'Vice Chairman — Media Moklet (MeMo)', meta:'2026 – Present', tag:'leadership', tagLabel:'Systems', desc:"Co-leading internal operations for Moklet's student media body, automating content workflows through Notion so the team spends less time chasing status updates."},
   {title:'Project Leader & Primary MC — SLC & Parents Talk', meta:'Student Led Conference', tag:'leadership', tagLabel:'Bilingual MC', desc:'Owned event planning end-to-end — stakeholder coordination, run-of-show, logistics — then anchored both programs bilingually (ID/EN) on stage.'},
   {title:'English Competition Coach / Tutor', meta:'Ongoing', tag:'comms', tagLabel:'Coaching', desc:'Trains competition candidates in debate, speech, and storytelling — turning national-level competitive experience into a repeatable coaching framework.'},
-  {title:'Producer & On-Camera Reporter — Moklet Investigation (MOVE)', meta:'Editorial', tag:'comms', tagLabel:'Media', desc:"Manages editorial scripts and conducts high-profile interviews for Moklet's investigative video segment."}
+  {title:'Producer & On-Camera Reporter — Moklet Investigation (MOVE)', meta:'Editorial', tag:'comms', tagLabel:'Media', desc:"Manages editorial scripts and conducts high-profile interviews for Moklet's investigative video segment.", link:'https://drive.google.com/drive/folders/1BTyhfdKyFVarKtnYmhAyJp2RVD63g1oz?usp=drive_link'}
 ];
 
 // ── Adding certificates ──────────────────────────────────────────────
@@ -549,12 +599,42 @@ const DEFAULT_WORK = [
 //   3. Set "certType" to "image" or "pdf" (pdf just links out to open the file).
 // Leave cert:'' if you don't have documentation yet — it'll show a placeholder.
 const DEFAULT_ACH = [
-  {title:'4th Best Speaker', sub:'NSDC Debate', year:'2026', level:'city', cert:'', certType:'image'},
-  {title:'3rd Place Winner', sub:'ADVA JA Competition', year:'2026', level:'national', cert:'', certType:'image'},
-  {title:'Runner-Up 1 (Juara Harapan 1)', sub:'FLS3N Traditional Music', year:'2026', level:'city', cert:'', certType:'image'},
-  {title:'2nd Place Winner', sub:'Doremi English Debate Competition', year:'2025', level:'city', cert:'', certType:'image'},
-  {title:'Gold Medalist', sub:'National English & Science Olympiad', year:'2024', level:'national', cert:'', certType:'image'},
-  {title:'Partial Scholarship Recipient', sub:'GlobalXtreme', year:'2025', level:'scholarship', cert:'', certType:'image'}
+  {title:'4th Best Speaker', sub:'NSDC Debate', year:'2026', level:'city', cert:'', certType:'image', link:'https://drive.google.com/drive/folders/18f4_ZHxhbINunx2mraZ5Kl36TcryO5H3?usp=sharing'},
+  {title:'3rd Place Winner', sub:'ADVA JA Competition', year:'2026', level:'national', cert:'', certType:'image', link:'https://drive.google.com/file/d/FILE_ID/view?usp=sharing'},
+  {title:'Runner-Up 1 (Juara Harapan 1)', sub:'FLS3N Traditional Music', year:'2026', level:'city', cert:'', certType:'image', link:'https://drive.google.com/drive/folders/1I0H6ThYV3awP0mOTqibeoLWP0-_gFSc3?usp=drive_link'},
+  {title:'2nd Place Winner', sub:'Doremi English Debate Competition', year:'2025', level:'city', cert:'', certType:'image', link:'https://drive.google.com/file/d/FILE_ID/view?usp=sharing'},
+  {title:'Gold Medalist', sub:'National English & Science Olympiad', year:'2024', level:'national', cert:'', certType:'image', link:'https://drive.google.com/drive/folders/1VfFd_C_2XyiPnJ7CGWcFV-BXS1DQSeNX?usp=drive_link'},
+  {title:'Partial Scholarship Recipient', sub:'GlobalXtreme', year:'2025', level:'scholarship', cert:'', certType:'image', link:'https://drive.google.com/drive/folders/1oWiOTnpFHjZ6egdoQbPJ1AfgrxWW44Qq?usp=drive_link'}
+];
+
+// ── CV & Drive links ──────────────────────────────────────────────────
+// Replace the placeholder URLs below with your real, "Anyone with the
+// link can view" Google Drive / PDF links. That's it — the buttons in
+// the "CV & Portfolio Drive" section update automatically.
+const DOCS = [
+  {
+    icon:'📄', bg:'rgba(207,195,234,0.45)',
+    title:'Curriculum Vitae (CV)',
+    desc:'My full CV as a PDF — education, experience, and skills in one document.',
+    btnLabel:'View CV (PDF)',
+    url:'https://drive.google.com/drive/folders/13wHV6_pskE56M0Eboj_jQjeiop2OUwtj?usp=drive_link'
+  },
+  {
+    icon:'🗂️', bg:'rgba(169,196,165,0.4)',
+    title:'Portfolio Drive Folder',
+    desc:'Certificates, event documentation, and supporting files, all in one shared Drive folder.',
+    btnLabel:'Open Drive Folder',
+    url:'https://drive.google.com/drive/folders/18f4_ZHxhbINunx2mraZ5Kl36TcryO5H3?usp=drive_link'
+  }
+];
+
+// ── Contact channels ──────────────────────────────────────────────────
+// Replace each "value" and "url" with your real contact details.
+// - For WhatsApp, url format is: https://wa.me/62XXXXXXXXXX (no + or leading 0)
+// - For Instagram/LinkedIn, use your full profile URL.
+// - For email, url format is: mailto:you@example.com
+const CONTACTS = [
+  {icon:'✉️', bg:'rgba(191,220,235,0.55)', label:'Email', value:'radistykda@email.com', url:'mailto:radistykda@email.com'}
 ];
 
 let workData = [];
@@ -599,8 +679,10 @@ function renderAch(){
   const list = document.getElementById('ach-list');
   list.innerHTML = achData.map((a, i)=>{
     const lv = LEVEL_META[a.level] || LEVEL_META.school;
-    return `<div class="ach-row">
-      <button class="medal medal-btn" style="background:rgba(0,0,0,0.04);" onclick="openCertModal(${i})" title="View certificate">${lv.icon}</button>
+    const clickHandler = a.link ? `onclick="window.open('${a.link}', '_blank')"` : `onclick="openCertModal(${i})"`;
+    const style = a.link ? 'cursor:pointer;' : '';
+    return `<div class="ach-row" style="${style}" ${clickHandler}>
+      <button class="medal medal-btn" style="background:rgba(0,0,0,0.04);" onclick="event.stopPropagation(); openCertModal(${i})" title="View certificate">${lv.icon}</button>
       <div>
         <div class="ach-title">${a.title}</div>
         <div class="ach-sub">${a.sub}</div>
@@ -609,6 +691,33 @@ function renderAch(){
       <span class="ach-year">${a.year} <button class="ach-remove" onclick="removeAch(${i})">✕</button></span>
     </div>`;
   }).join('') || '<p class="gb-empty">No achievements yet.</p>';
+}
+
+function renderDocs(){
+  const grid = document.getElementById('doc-grid');
+  if(!grid) return;
+  grid.innerHTML = DOCS.map(d=>`
+    <div class="doc-card">
+      <div class="doc-icon" style="background:${d.bg};">${d.icon}</div>
+      <h3>${d.title}</h3>
+      <p>${d.desc}</p>
+      <a class="btn btn-primary" href="${d.url}" target="_blank" rel="noopener">${d.btnLabel} ↗</a>
+    </div>
+  `).join('');
+}
+
+function renderContacts(){
+  const grid = document.getElementById('contact-grid');
+  if(!grid) return;
+  grid.innerHTML = CONTACTS.map(c=>`
+    <a class="contact-card" href="${c.url}" target="_blank" rel="noopener">
+      <div class="contact-icon" style="background:${c.bg};">${c.icon}</div>
+      <div>
+        <div class="contact-label">${c.label}</div>
+        <div class="contact-value">${c.value}</div>
+      </div>
+    </a>
+  `).join('');
 }
 
 function openCertModal(i){
@@ -725,6 +834,8 @@ async function init(){
   renderFilters();
   renderWork();
   renderAch();
+  renderDocs();
+  renderContacts();
   await loadGuestbook();
 }
 init();
