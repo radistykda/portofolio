@@ -3,54 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Radisty Kirana Dhisa Aqila — Diesnat Portfolio</title>
+<title>Radisty Kirana Dhisa Aqila — Personal Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root{
     --sage:#A9C4A5;
-    --sage-deep:#6E9468;
+    --sage-deep:#4E7048;
     --lavender:#CFC3EA;
-    --lavender-deep:#8672B8;
+    --lavender-deep:#6B5699;
     --peach:#F3D7BE;
-    --peach-deep:#D98E63;
+    --peach-deep:#B86B3E;
     --sky:#BFDCEB;
+    --sky-deep:#316A8A;
     --cream:#FBF7F1;
     --card:#FFFDF9;
     --ink:#3E3A45;
     --ink-soft:#79738A;
     --line:#EAE3D6;
     --radius:22px;
-    --shadow:0 10px 30px -14px rgba(120,100,80,0.25);
+    --shadow:0 10px 30px -14px rgba(120,100,80,0.18);
+
+    --pill-sage-bg: rgba(169,196,165,0.35);
+    --pill-lav-bg: rgba(207,195,234,0.4);
+    --pill-peach-bg: rgba(243,215,190,0.45);
+    --pill-sky-bg: rgba(191,220,235,0.45);
   }
+
+  /* HIGH-CONTRAST & ACCESSIBLE DARK MODE */
   [data-theme="dark"]{
-    --cream:#252230;
-    --card:#2E2A3A;
-    --ink:#F2EEE6;
-    --ink-soft:#B3ABC4;
-    --line:#413C52;
-    --shadow:0 10px 30px -14px rgba(0,0,0,0.5);
+    --cream:#16141F;
+    --card:#211E2C;
+    --ink:#F3EFFA;
+    --ink-soft:#B4ACC4;
+    --line:#383348;
+    
+    /* Brightened accent colors for dark backgrounds */
+    --sage:#A2C89E;
+    --sage-deep:#BBE0B7;
+    --lavender:#C6B8E5;
+    --lavender-deep:#D7CBF0;
+    --peach:#F3C29F;
+    --peach-deep:#FAD3B9;
+    --sky:#9BCDE8;
+    --sky-deep:#BDE2F5;
+
+    /* Increased pill opacity so text pops cleanly */
+    --pill-sage-bg: rgba(162,200,158,0.18);
+    --pill-lav-bg: rgba(198,184,229,0.18);
+    --pill-peach-bg: rgba(243,194,159,0.18);
+    --pill-sky-bg: rgba(155,205,232,0.18);
+
+    --shadow:0 12px 32px -16px rgba(0,0,0,0.65);
   }
+
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
     background:var(--cream);
     background-image:
-      radial-gradient(circle at 8% 8%, rgba(169,196,165,0.18), transparent 40%),
-      radial-gradient(circle at 92% 18%, rgba(207,195,234,0.22), transparent 42%),
-      radial-gradient(circle at 50% 95%, rgba(243,215,190,0.25), transparent 45%);
+      radial-gradient(circle at 8% 8%, rgba(169,196,165,0.15), transparent 40%),
+      radial-gradient(circle at 92% 18%, rgba(207,195,234,0.18), transparent 42%),
+      radial-gradient(circle at 50% 95%, rgba(243,215,190,0.18), transparent 45%);
     color:var(--ink);
     font-family:'Plus Jakarta Sans', sans-serif;
     -webkit-font-smoothing:antialiased;
-    transition:background-color .25s ease, color .25s ease;
+    transition:background-color .3s ease, color .3s ease;
   }
   [data-theme="dark"] body{
     background-image:
-      radial-gradient(circle at 8% 8%, rgba(169,196,165,0.08), transparent 40%),
-      radial-gradient(circle at 92% 18%, rgba(207,195,234,0.10), transparent 42%),
-      radial-gradient(circle at 50% 95%, rgba(243,215,190,0.08), transparent 45%);
+      radial-gradient(circle at 8% 8%, rgba(162,200,158,0.06), transparent 40%),
+      radial-gradient(circle at 92% 18%, rgba(198,184,229,0.08), transparent 42%),
+      radial-gradient(circle at 50% 95%, rgba(243,194,159,0.06), transparent 45%);
   }
   h1,h2,h3,.display{font-family:'Fraunces', serif; font-weight:500; letter-spacing:-0.01em;}
   .mono{font-family:'IBM Plex Mono', monospace; letter-spacing:0.02em;}
@@ -62,9 +88,13 @@
   /* NAV */
   nav{
     position:sticky; top:0; z-index:50;
-    backdrop-filter:blur(10px);
-    background:rgba(251,247,241,0.82);
+    backdrop-filter:blur(12px);
+    background:rgba(251,247,241,0.85);
     border-bottom:1px solid var(--line);
+    transition:background .3s ease;
+  }
+  [data-theme="dark"] nav{
+    background:rgba(22,20,31,0.85);
   }
   .nav-inner{max-width:1080px; margin:0 auto; padding:16px 28px; display:flex; align-items:center; justify-content:space-between;}
   .nav-name{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem;}
@@ -72,39 +102,37 @@
   .nav-links a{text-decoration:none; transition:color .2s;}
   .nav-links a:hover{color:var(--sage-deep);}
   .lang-toggle{
-    display:flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; font-size:0.78rem;
+    display:flex; border:1.5px solid var(--line); border-radius:999px; overflow:hidden; font-size:0.78rem; font-weight:700;
   }
   .lang-toggle button{
-    border:none; background:transparent; padding:6px 12px; cursor:pointer; color:var(--ink-soft); font-family:inherit;
+    border:none; background:transparent; padding:6px 14px; cursor:pointer; color:var(--ink-soft); font-family:inherit; transition:all .2s ease;
   }
-  .lang-toggle button.active{background:var(--sage); color:#fff;}
+  .lang-toggle button.active{background:var(--sage-deep); color:#fff;}
+  [data-theme="dark"] .lang-toggle button.active{color:#16141F;}
+  
   .theme-toggle{
-    border:1px solid var(--line); background:var(--card); border-radius:999px; width:34px; height:34px;
-    display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:0.95rem; margin-left:10px;
+    border:1.5px solid var(--line); background:var(--card); border-radius:999px; width:36px; height:36px;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1rem; margin-left:10px;
+    color:var(--ink);
   }
   .nav-controls{display:flex; align-items:center;}
   @media(max-width:640px){ .nav-links{display:none;} }
 
-  /* MODAL / LIGHTBOX */
+  /* MODAL */
   .modal-overlay{
-    display:none; position:fixed; inset:0; background:rgba(30,26,38,0.55); z-index:100;
-    align-items:center; justify-content:center; padding:24px; backdrop-filter:blur(3px);
+    display:none; position:fixed; inset:0; background:rgba(15,13,20,0.7); z-index:100;
+    align-items:center; justify-content:center; padding:24px; backdrop-filter:blur(5px);
   }
   .modal-overlay.open{display:flex;}
   .modal-box{
     background:var(--card); border-radius:20px; max-width:520px; width:100%; padding:26px;
-    box-shadow:0 24px 60px -20px rgba(0,0,0,0.4); max-height:85vh; overflow-y:auto; position:relative;
+    box-shadow:0 24px 60px -20px rgba(0,0,0,0.5); max-height:85vh; overflow-y:auto; position:relative;
+    border:1px solid var(--line);
   }
   .modal-close{position:absolute; top:14px; right:16px; border:none; background:none; font-size:1.1rem; cursor:pointer; color:var(--ink-soft);}
   .modal-box h4{margin:0 0 4px; font-family:'Fraunces',serif; font-size:1.1rem;}
   .modal-box .modal-sub{font-size:0.82rem; color:var(--ink-soft); margin-bottom:16px;}
   .modal-box img{width:100%; border-radius:12px; border:1px solid var(--line); display:block;}
-  .modal-empty{
-    border:1.5px dashed var(--line); border-radius:14px; padding:30px 18px; text-align:center;
-    color:var(--ink-soft); font-size:0.88rem;
-  }
-  .modal-box a.doc-link{display:inline-block; margin-top:6px; color:var(--sage-deep); font-weight:700; text-decoration:none;}
-  .medal-btn{border:none; cursor:pointer; padding:0;}
 
   /* ACCORDION */
   .accordion-head{display:flex; align-items:center; justify-content:space-between; cursor:pointer; gap:12px;}
@@ -124,7 +152,7 @@
   @media(max-width:860px){ .hero-grid{grid-template-columns:1fr;} }
   .eyebrow{
     display:inline-flex; align-items:center; gap:8px; font-size:0.78rem; text-transform:uppercase;
-    color:var(--sage-deep); margin-bottom:18px; font-weight:600;
+    color:var(--sage-deep); margin-bottom:18px; font-weight:700; letter-spacing:0.05em;
   }
   .eyebrow::before{content:''; width:7px; height:7px; border-radius:50%; background:var(--sage-deep);}
   .hero h1{font-size:clamp(2.1rem, 4.2vw, 3.3rem); line-height:1.08; margin:0 0 20px;}
@@ -132,14 +160,14 @@
   .hero p.sub{font-size:1.08rem; color:var(--ink-soft); max-width:520px; line-height:1.6; margin:0 0 28px;}
   .hero-cta{display:flex; gap:14px; flex-wrap:wrap;}
   .btn{
-    border-radius:999px; padding:13px 24px; font-weight:600; font-size:0.92rem; cursor:pointer;
+    border-radius:999px; padding:13px 24px; font-weight:700; font-size:0.92rem; cursor:pointer;
     border:none; font-family:inherit; transition:transform .15s ease, box-shadow .15s ease;
   }
   .btn:hover{transform:translateY(-2px);}
   .btn-primary{background:var(--ink); color:var(--cream); box-shadow:var(--shadow);}
-  .btn-ghost{background:transparent; border:1.5px solid var(--ink); color:var(--ink);}
+  .btn-ghost{background:transparent; border:1.5px solid var(--line); color:var(--ink);}
 
-  /* status card — signature element, styled like a Notion database entry */
+  /* STATUS CARD */
   .status-card{
     background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
     border:1px solid var(--line); padding:22px; position:relative;
@@ -147,20 +175,30 @@
   .status-card .dot-row{display:flex; gap:6px; margin-bottom:16px;}
   .status-card .dot-row span{width:9px; height:9px; border-radius:50%;}
   .status-card .dot-row span:nth-child(1){background:var(--peach-deep);}
-  .status-card .dot-row span:nth-child(2){background:var(--sage);}
+  .status-card .dot-row span:nth-child(2){background:var(--sage-deep);}
   .status-card .dot-row span:nth-child(3){background:var(--lavender-deep);}
   .status-title{font-family:'Fraunces',serif; font-size:1.2rem; margin:0 0 4px;}
   .status-sub{font-size:0.85rem; color:var(--ink-soft); margin:0 0 18px;}
   .prop-row{display:flex; justify-content:space-between; align-items:center; padding:9px 0; border-top:1px solid var(--line); font-size:0.87rem; gap:10px;}
   .prop-label{color:var(--ink-soft); display:flex; align-items:center; gap:7px; white-space:nowrap;}
   .prop-value{text-align:right;}
+
+  /* HIGH-CONTRAST PILLS & BUTTONS */
   .pill{
-    display:inline-block; padding:4px 11px; border-radius:999px; font-size:0.76rem; font-weight:600;
+    display:inline-block; padding:5px 12px; border-radius:999px; font-size:0.78rem; font-weight:700; letter-spacing:0.01em;
   }
-  .pill-sage{background:rgba(169,196,165,0.4); color:var(--sage-deep);}
-  .pill-lav{background:rgba(207,195,234,0.45); color:var(--lavender-deep);}
-  .pill-peach{background:rgba(243,215,190,0.55); color:var(--peach-deep);}
-  .pill-sky{background:rgba(191,220,235,0.55); color:#3E7A98;}
+  .pill-sage{background:var(--pill-sage-bg); color:var(--sage-deep); border:1px solid rgba(162,200,158,0.25);}
+  .pill-lav{background:var(--pill-lav-bg); color:var(--lavender-deep); border:1px solid rgba(198,184,229,0.25);}
+  .pill-peach{background:var(--pill-peach-bg); color:var(--peach-deep); border:1px solid rgba(243,194,159,0.25);}
+  .pill-sky{background:var(--pill-sky-bg); color:var(--sky-deep); border:1px solid rgba(155,205,232,0.25);}
+
+  .contact-btn{
+    text-decoration:none; padding:8px 14px; border-radius:12px; font-size:0.82rem; font-weight:700;
+    display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line); transition:all .15s ease;
+  }
+  .contact-btn.wa{background:var(--pill-sage-bg); color:var(--sage-deep);}
+  .contact-btn.ig{background:var(--pill-peach-bg); color:var(--peach-deep);}
+  .contact-btn:hover{transform:translateY(-2px);}
 
   /* SECTION HEADS */
   .section-head{margin-bottom:38px;}
@@ -173,33 +211,38 @@
   .about-body p{line-height:1.75; font-size:1.02rem; color:var(--ink); margin:0 0 18px;}
   .skill-card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow); height:fit-content;}
   .skill-card h3{font-size:0.95rem; margin:0 0 14px; font-family:'Plus Jakarta Sans'; font-weight:700;}
-  .tag-chip{display:inline-block; padding:6px 13px; border-radius:999px; font-size:0.8rem; font-weight:600; margin:0 6px 8px 0;}
+  .tag-chip{display:inline-block; padding:6px 13px; border-radius:999px; font-size:0.8rem; font-weight:700; margin:0 6px 8px 0;}
   .lang-bar{margin-bottom:12px;}
   .lang-bar .lbl{display:flex; justify-content:space-between; font-size:0.82rem; margin-bottom:5px; color:var(--ink-soft);}
-  .lang-track{background:#EFE9DC; border-radius:6px; height:6px; overflow:hidden;}
+  .lang-track{background:var(--line); border-radius:6px; height:6px; overflow:hidden;}
   .lang-fill{height:100%; border-radius:6px;}
 
   /* FILTER PILLS */
   .filters{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:26px;}
   .filter-pill{
     border:1.5px solid var(--line); background:var(--card); border-radius:999px; padding:8px 16px;
-    font-size:0.83rem; font-weight:600; cursor:pointer; color:var(--ink-soft); font-family:inherit;
+    font-size:0.83rem; font-weight:700; cursor:pointer; color:var(--ink-soft); font-family:inherit;
     transition:all .15s ease;
   }
   .filter-pill.active{background:var(--ink); color:var(--cream); border-color:var(--ink);}
 
-  /* LEADERSHIP GRID — notion db row style */
+  /* LEADERSHIP & WORK GRID */
   .db-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
   @media(max-width:760px){ .db-grid{grid-template-columns:1fr;} }
   .db-card{
     background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
     padding:22px; box-shadow:var(--shadow); position:relative; transition:transform .18s ease;
+    display:flex; flex-direction:column; justify-content:space-between;
   }
   .db-card:hover{transform:translateY(-4px);}
   .db-card h3{font-size:1.08rem; margin:0 0 6px; font-family:'Fraunces',serif; font-weight:600;}
   .db-card .db-meta{font-size:0.78rem; color:var(--ink-soft); margin-bottom:12px;}
   .db-card p{font-size:0.9rem; line-height:1.6; color:var(--ink); margin:0 0 14px;}
-  .db-card .tags{display:flex; gap:6px; flex-wrap:wrap;}
+  .db-card .tags{display:flex; gap:6px; flex-wrap:wrap; margin-top:auto;}
+  .db-card a.drive-btn{
+    display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:0.82rem; font-weight:700;
+    color:var(--sage-deep); text-decoration:none;
+  }
   .db-remove{position:absolute; top:16px; right:16px; border:none; background:none; color:var(--ink-soft); cursor:pointer; font-size:0.75rem; display:none;}
   .admin-on .db-remove{display:inline-block;}
 
@@ -210,23 +253,19 @@
     background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px 20px; box-shadow:var(--shadow);
     transition:all .15s ease;
   }
-  .ach-row[style*="cursor:pointer"]:hover{
-    background:rgba(169,196,165,0.08); transform:translateY(-2px); box-shadow:0 12px 32px -12px rgba(120,100,80,0.3);
+  .ach-row.has-cert:hover{
+    background:var(--pill-sage-bg); transform:translateY(-2px);
   }
   @media(max-width:640px){ .ach-row{grid-template-columns:auto 1fr; row-gap:8px;} .ach-row .ach-year, .ach-row .ach-level{grid-column:2;} }
   .medal{
     width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-    font-size:1.1rem; flex-shrink:0;
+    font-size:1.1rem; flex-shrink:0; background:rgba(255,255,255,0.05);
   }
   .ach-title{font-weight:700; font-size:0.94rem;}
-  .ach-sub{font-size:0.8rem; color:var(--ink-soft); margin-top:2px;}
+  .ach-sub{font-size:0.82rem; color:var(--ink-soft); margin-top:2px;}
   .ach-year{font-family:'IBM Plex Mono'; font-size:0.8rem; color:var(--ink-soft);}
   .ach-remove{border:none; background:none; color:var(--ink-soft); cursor:pointer; display:none; font-size:0.75rem;}
   .admin-on .ach-remove{display:inline-block;}
-
-  /* MC HIGHLIGHTS */
-  .stage-list{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;}
-  .stage-item{background:var(--card); border:1px solid var(--line); border-radius:999px; padding:8px 16px; font-size:0.85rem; box-shadow:var(--shadow);}
 
   /* CV & DRIVE */
   .doc-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
@@ -253,7 +292,7 @@
   .contact-card:hover{transform:translateY(-3px);}
   .contact-icon{
     width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-    font-size:1.1rem; flex-shrink:0;
+    font-size:1.1rem; flex-shrink:0; background:var(--pill-lav-bg);
   }
   .contact-label{font-size:0.78rem; color:var(--ink-soft); margin-bottom:2px;}
   .contact-value{font-weight:700; font-size:0.92rem; word-break:break-word;}
@@ -264,40 +303,36 @@
   .gb-form textarea{grid-column:1 / -1;}
   .gb-form input, .gb-form textarea{
     border:1.5px solid var(--line); border-radius:12px; padding:11px 14px; font-family:inherit; font-size:0.9rem;
-    background:var(--cream); resize:vertical;
+    background:var(--cream); color:var(--ink); resize:vertical;
   }
-  .gb-form input:focus, .gb-form textarea:focus{outline:2px solid var(--sage); outline-offset:1px;}
+  .gb-form input:focus, .gb-form textarea:focus{outline:2px solid var(--sage-deep); outline-offset:1px;}
   .gb-form button{grid-column:1/-1; justify-self:start;}
-  .gb-note{
-    border-top:1px solid var(--line); padding:14px 0; font-size:0.9rem;
-  }
+  .gb-note{border-top:1px solid var(--line); padding:14px 0; font-size:0.9rem;}
   .gb-note .gb-meta{font-size:0.76rem; color:var(--ink-soft); margin-top:4px;}
-  .gb-empty{color:var(--ink-soft); font-size:0.9rem; font-style:italic;}
 
   /* CTA / FOOTER */
   .cta-block{
     background:linear-gradient(135deg, var(--sage), var(--sky));
-    border-radius:28px; padding:52px 40px; text-align:center; color:#fff;
+    border-radius:28px; padding:52px 40px; text-align:center; color:#181622;
   }
-  .cta-block h2{color:#fff; font-size:clamp(1.5rem,3vw,2.1rem); margin:0 0 12px;}
-  .cta-block p{color:rgba(255,255,255,0.92); max-width:520px; margin:0 auto 26px; line-height:1.6;}
-  .cta-block .btn-primary{background:#fff; color:var(--sage-deep);}
+  .cta-block h2{color:#181622; font-size:clamp(1.5rem,3vw,2.1rem); margin:0 0 12px;}
+  .cta-block p{color:#322E42; max-width:520px; margin:0 auto 26px; line-height:1.6;}
+  .cta-block .btn-primary{background:#181622; color:#FAF7F2;}
 
   footer{padding:40px 0 70px; text-align:center; font-size:0.82rem; color:var(--ink-soft);}
   .admin-link{background:none; border:none; color:var(--ink-soft); text-decoration:underline; cursor:pointer; font-size:0.8rem; font-family:inherit; margin-top:10px;}
 
   .admin-panel{
     background:var(--card); border:1.5px dashed var(--lavender-deep); border-radius:var(--radius);
-    padding:22px; margin-top:22px; display:none;
+    padding:22px; margin-top:22px; display:none; text-align:left;
   }
   .admin-panel.open{display:block;}
   .admin-panel h4{margin:0 0 12px; font-size:0.95rem;}
   .admin-panel .row{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;}
   .admin-panel input, .admin-panel select, .admin-panel textarea{
-    border:1.5px solid var(--line); border-radius:10px; padding:9px 12px; font-family:inherit; font-size:0.85rem; background:var(--cream);
+    border:1.5px solid var(--line); border-radius:10px; padding:9px 12px; font-family:inherit; font-size:0.85rem; background:var(--cream); color:var(--ink);
   }
   .admin-panel textarea{grid-column:1/-1; resize:vertical;}
-  .badge-note{font-size:0.76rem; color:var(--ink-soft); margin-top:6px;}
 </style>
 </head>
 <body>
@@ -306,12 +341,12 @@
   <div class="nav-inner">
     <div class="nav-name">Radisty <span style="color:var(--sage-deep)">·</span> Aqila</div>
     <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#work">Leadership</a>
-      <a href="#achievements">Achievements</a>
-      <a href="#cv">CV &amp; Drive</a>
-      <a href="#guestbook">Guestbook</a>
-      <a href="#connect">Connect</a>
+      <a href="#about" data-en="About" data-id="Tentang">About</a>
+      <a href="#work" data-en="Experience" data-id="Pengalaman">Experience</a>
+      <a href="#achievements" data-en="Achievements" data-id="Prestasi">Achievements</a>
+      <a href="#cv" data-en="CV &amp; Drive" data-id="CV &amp; Drive">CV &amp; Drive</a>
+      <a href="#guestbook" data-en="Guestbook" data-id="Buku Tamu">Guestbook</a>
+      <a href="#connect" data-en="Connect" data-id="Kontak">Connect</a>
     </div>
     <div class="nav-controls">
       <div class="lang-toggle">
@@ -326,11 +361,11 @@
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow" data-en="APPLYING · DIESNAT 2026 COMMITTEE" data-id="MENDAFTAR · PANITIA DIESNAT 2026">APPLYING · DIESNAT 2026 COMMITTEE</div>
-      <h1 data-en="Where software logic meets <em>stage presence</em>." data-id="Saat logika rekayasa bertemu <em>panggung</em>.">Where software logic meets <em>stage presence</em>.</h1>
-      <p class="sub" data-en="I'm Radisty — a Software Engineering student, bilingual MC, and systems-minded event leader, ready to bring structure and heart to Diesnat 2026." data-id="Saya Radisty — siswa Rekayasa Perangkat Lunak, MC dwibahasa, dan pemimpin acara yang berpikir sistematis, siap membawa struktur dan semangat untuk Diesnat 2026.">I'm Radisty — a Software Engineering student, bilingual MC, and systems-minded event leader, ready to bring structure and heart to Diesnat 2026.</p>
+      <div class="eyebrow" data-en="SOFTWARE ENGINEERING &amp; LEADERSHIP" data-id="REKAYASA PERANGKAT LUNAK &amp; KEPEMIMPINAN">SOFTWARE ENGINEERING &amp; LEADERSHIP</div>
+      <h1 data-en="Engineering systems with <em>creative execution</em>." data-id="Membangun sistem dengan <em>eksekusi kreatif</em>.">Engineering systems with <em>creative execution</em>.</h1>
+      <p class="sub" data-en="I'm Radisty — a Software Engineering student at SMK Telkom Malang, bilingual MC, and systems leader combining technical logic with high-level event logistics and public speaking." data-id="Saya Radisty — siswa Rekayasa Perangkat Lunak SMK Telkom Malang, MC dwibahasa, dan pemimpin sistem yang menggabungkan logika teknis dengan logistik acara dan public speaking.">I'm Radisty — a Software Engineering student at SMK Telkom Malang, bilingual MC, and systems leader combining technical logic with high-level event logistics and public speaking.</p>
       <div class="hero-cta">
-        <button class="btn btn-primary" onclick="document.getElementById('work').scrollIntoView()" data-en="See my work" data-id="Lihat karya saya">See my work</button>
+        <button class="btn btn-primary" onclick="document.getElementById('work').scrollIntoView()" data-en="View Portfolio" data-id="Lihat Portofolio">View Portfolio</button>
         <button class="btn btn-ghost" onclick="document.getElementById('guestbook').scrollIntoView()" data-en="Leave a note ✍️" data-id="Tinggalkan pesan ✍️">Leave a note ✍️</button>
       </div>
     </div>
@@ -338,16 +373,15 @@
       <div class="dot-row"><span></span><span></span><span></span></div>
       <div class="status-title">Radisty Kirana Dhisa Aqila</div>
       <p class="status-sub">Software Engineering (RPL) · International Class · SMK Telkom Malang</p>
-      <div class="prop-row"><span class="prop-label">🎯 Focus</span><span class="prop-value pill pill-sage">Event Systems + Public Speaking</span></div>
-      <div class="prop-row"><span class="prop-label">🇮🇩 Indonesian</span><span class="prop-value pill pill-peach">Native</span></div>
-      <div class="prop-row"><span class="prop-label">🇬🇧 English</span><span class="prop-value pill pill-lav">Advanced</span></div>
-      <div class="prop-row"><span class="prop-label">🇰🇷 Korean</span><span class="prop-value pill pill-sky">Intermediate</span></div>
-      <div class="prop-row"><span class="prop-label">📌 Status</span><span class="prop-value pill pill-sage">Open</span></div>
+      <div class="prop-row"><span class="prop-label" data-en="🎯 Focus" data-id="🎯 Fokus">🎯 Focus</span><span class="prop-value pill pill-sage" data-en="Web Systems &amp; Public Advocacy" data-id="Sistem Web &amp; Public Advocacy">Web Systems &amp; Public Advocacy</span></div>
+      <div class="prop-row"><span class="prop-label">🇮🇩 Indonesian</span><span class="prop-value pill pill-peach" data-en="Native" data-id="Penutur Asli">Native</span></div>
+      <div class="prop-row"><span class="prop-label">🇬🇧 English</span><span class="prop-value pill pill-lav" data-en="Advanced" data-id="Lanjutan">Advanced</span></div>
+      <div class="prop-row"><span class="prop-label">🇰🇷 Korean</span><span class="prop-value pill pill-sky" data-en="Intermediate" data-id="Menengah">Intermediate</span></div>
+      <div class="prop-row"><span class="prop-label" data-en="📌 Status" data-id="📌 Status">📌 Status</span><span class="prop-value pill pill-sage" data-en="Open for Projects &amp; Roles" data-id="Terbuka untuk Proyek &amp; Peran">Open for Projects &amp; Roles</span></div>
 
-      <!-- added contact buttons for profile -->
       <div class="contact-buttons" style="margin-top:14px; display:flex; gap:8px;">
-        <a href="https://wa.me/6289521030102" class="contact-btn wa" style="text-decoration:none; padding:8px 12px; border-radius:10px; background:rgba(169,196,165,0.12); color:var(--sage-deep);"><span class="icon">💬</span> +6289521030102</a>
-        <a href="https://instagram.com/radistykda" class="contact-btn ig" style="text-decoration:none; padding:8px 12px; border-radius:10px; background:rgba(243,215,190,0.12); color:var(--peach-deep);"><span class="icon">📸</span> @radistykda</a>
+        <a href="https://wa.me/6289521030102" target="_blank" class="contact-btn wa"><span class="icon">💬</span> +6289521030102</a>
+        <a href="https://instagram.com/radistykda" target="_blank" class="contact-btn ig"><span class="icon">📸</span> @radistykda</a>
       </div>
     </div>
   </div>
@@ -356,34 +390,34 @@
 <section id="about">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-tag">About</div>
-      <h2 data-en="The planner and the performer" data-id="Sang perencana dan sang penampil">The planner and the performer</h2>
+      <div class="section-tag" data-en="About Me" data-id="Tentang Saya">About Me</div>
+      <h2 data-en="The planner and the advocate" data-id="Sang perencana dan sang orator">The planner and the advocate</h2>
     </div>
     <div class="about-body">
       <div>
-        <p>I'm a Software Engineering student in the International Class Program at SMK Telkom Malang, where I've learned to treat problems — technical or logistical — the same way: break them into components, find the workflow, and automate what shouldn't be manual. That systems thinking now runs quietly behind everything I do outside the classroom, from the Notion pipelines I built to keep my schedule organized, I write before every event I lead.</p>
-        <p>But structure only gets an event halfway there — the rest is voice. As a national-level debater, bilingual MC, and English coach, I've spent the last two years learning how to hold a room, translate ideas across languages on the fly, and keep a program moving even when the schedule doesn't cooperate. I'm applying to the Diesnat committee because I want to bring both halves of that skill set — the planner and the performer — to one of Moklet's stages.</p>
+        <p data-en="I am an analytical Software Engineering student in the Moklet International Class Program at SMK Telkom Malang. I combine web development logic with national-level communication skills, agile project workflows, and public advocacy." data-id="Saya adalah siswa Rekayasa Perangkat Lunak analitis di Program Kelas Internasional Moklet SMK Telkom Malang. Saya menggabungkan logika pengembangan web dengan keterampilan komunikasi tingkat nasional, alur kerja proyek agile, dan advokasi publik.">I am an analytical Software Engineering student in the Moklet International Class Program at SMK Telkom Malang. I combine web development logic with national-level communication skills, agile project workflows, and public advocacy.</p>
+        <p data-en="Whether co-leading operations at Media Moklet, managing institutional event logistics for major regional programs like BPJS Surabaya, coaching English debate contenders, or anchoring stages as a bilingual MC, I focus on breaking complex operations into streamlined, automated workflows." data-id="Baik saat memimpin operasional di Media Moklet, mengelola logistik acara institusional untuk program regional besar seperti BPJS Surabaya, melatih peserta debat Bahasa Inggris, atau memandu panggung sebagai MC dwibahasa, fokus saya adalah menyederhanakan operasional kompleks menjadi alur kerja yang efisien dan terotomatisasi.">Whether co-leading operations at Media Moklet, managing institutional event logistics for major regional programs like BPJS Surabaya, coaching English debate contenders, or anchoring stages as a bilingual MC, I focus on breaking complex operations into streamlined, automated workflows.</p>
       </div>
       <div class="skill-card">
-        <h3>Core Skills</h3>
-        <span class="tag-chip pill-sage">Event Logistics</span>
+        <h3 data-en="Core Skills" data-id="Keterampilan Utama">Core Skills</h3>
+        <span class="tag-chip pill-sage">UI/UX Web Design</span>
         <span class="tag-chip pill-lav">Bilingual MC (ID/EN)</span>
         <span class="tag-chip pill-peach">Notion Workflow Automation</span>
-        <span class="tag-chip pill-sky">Public Speaking</span>
-        <span class="tag-chip pill-sage">Stakeholder Management</span>
-        <span class="tag-chip pill-lav">Debate Coaching</span>
-        <h3 style="margin-top:20px;">Languages</h3>
+        <span class="tag-chip pill-sky">Public Speaking &amp; Debate</span>
+        <span class="tag-chip pill-sage">Event Logistics</span>
+        <span class="tag-chip pill-lav">Project Management</span>
+        <h3 style="margin-top:20px;" data-en="Languages" data-id="Bahasa">Languages</h3>
         <div class="lang-bar">
-          <div class="lbl"><span>Indonesian</span><span>Native</span></div>
+          <div class="lbl"><span>Indonesian</span><span data-en="Native" data-id="Penutur Asli">Native</span></div>
           <div class="lang-track"><div class="lang-fill" style="width:100%; background:var(--peach-deep);"></div></div>
         </div>
         <div class="lang-bar">
-          <div class="lbl"><span>English</span><span>Advanced</span></div>
+          <div class="lbl"><span>English</span><span data-en="Advanced" data-id="Lanjutan">Advanced</span></div>
           <div class="lang-track"><div class="lang-fill" style="width:88%; background:var(--lavender-deep);"></div></div>
         </div>
         <div class="lang-bar">
-          <div class="lbl"><span>Korean</span><span>Intermediate</span></div>
-          <div class="lang-track"><div class="lang-fill" style="width:55%; background:#3E7A98;"></div></div>
+          <div class="lbl"><span>Korean</span><span data-en="Intermediate" data-id="Menengah">Intermediate</span></div>
+          <div class="lang-track"><div class="lang-fill" style="width:55%; background:var(--sky-deep);"></div></div>
         </div>
       </div>
     </div>
@@ -393,25 +427,19 @@
 <section id="work">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-tag">Featured Work</div>
-      <h2 data-en="Leadership & Event Work" data-id="Kepemimpinan & Pengalaman Acara">Leadership & Event Work</h2>
+      <div class="section-tag" data-en="Experience" data-id="Pengalaman">Experience</div>
+      <h2 data-en="Leadership, Projects &amp; Operations" data-id="Kepemimpinan, Proyek &amp; Operasional">Leadership, Projects &amp; Operations</h2>
     </div>
     <div class="filters" id="filters"></div>
     <div class="db-grid" id="work-grid"></div>
-
-    <!-- added contact buttons for CV & Drive -->
-    <div class="contact-buttons" style="margin-top:14px; display:flex; gap:8px;">
-      <a href="https://wa.me/6289521030102" class="contact-btn wa" style="text-decoration:none; padding:8px 12px; border-radius:10px; background:rgba(169,196,165,0.12); color:var(--sage-deep);"><span class="icon">💬</span> +6289521030102</a>
-      <a href="https://instagram.com/radistykda" class="contact-btn ig" style="text-decoration:none; padding:8px 12px; border-radius:10px; background:rgba(243,215,190,0.12); color:var(--peach-deep);"><span class="icon">📸</span> @radistykda</a>
-    </div>
   </div>
 </section>
 
 <section id="achievements">
   <div class="wrap">
     <div class="section-head">
-      <div class="section-tag">Credentials</div>
-      <h2 data-en="Achievements & Awards" data-id="Prestasi & Penghargaan">Achievements & Awards</h2>
+      <div class="section-tag" data-en="Credentials" data-id="Sertifikasi">Credentials</div>
+      <h2 data-en="Achievements &amp; Honors" data-id="Prestasi &amp; Penghargaan">Achievements &amp; Honors</h2>
     </div>
     <div class="ach-list" id="ach-list"></div>
   </div>
@@ -421,7 +449,7 @@
   <div class="wrap">
     <div class="section-head">
       <div class="section-tag" data-en="Documents" data-id="Dokumen">Documents</div>
-      <h2 data-en="CV & Portfolio Drive" data-id="CV & Drive Portofolio">CV & Portfolio Drive</h2>
+      <h2 data-en="CV &amp; Media Repository" data-id="CV &amp; Repositori Media">CV &amp; Media Repository</h2>
     </div>
     <div class="doc-grid" id="doc-grid"></div>
   </div>
@@ -431,22 +459,22 @@
   <div class="wrap">
     <div class="section-head accordion-head" onclick="toggleSection('guestbook-body','guestbook-chev')">
       <div>
-        <div class="section-tag">Say Hi</div>
-        <h2 data-en="Leave a note for Adis" data-id="Tinggalkan pesan untuk Adis">Leave a note for Adis</h2>
+        <div class="section-tag" data-en="Say Hi" data-id="Sapa Saya">Say Hi</div>
+        <h2 data-en="Leave a note" data-id="Tinggalkan pesan">Leave a note</h2>
       </div>
       <span class="accordion-chevron" id="guestbook-chev">▾</span>
     </div>
     <div class="accordion-body" id="guestbook-body">
-    <div class="guestbook-box">
-      <div class="gb-form">
-        <input type="text" id="gb-name" placeholder="Your name" maxlength="40">
-        <input type="text" id="gb-role" placeholder="Your role (e.g. Event Committee)" maxlength="50">
-        <textarea id="gb-msg" rows="3" placeholder="Say something nice, ask a question, or just leave your mark 🌿" maxlength="280"></textarea>
-        <button class="btn btn-primary" onclick="submitNote()">Post note</button>
+      <div class="guestbook-box">
+        <div class="gb-form">
+          <input type="text" id="gb-name" placeholder="Your name" maxlength="40">
+          <input type="text" id="gb-role" placeholder="Your role / organization" maxlength="50">
+          <textarea id="gb-msg" rows="3" placeholder="Leave a message or feedback 🌿" maxlength="280"></textarea>
+          <button class="btn btn-primary" onclick="submitNote()" data-en="Post note" data-id="Kirim pesan">Post note</button>
+        </div>
+        <div id="gb-list"></div>
+        <button class="show-more-btn" id="gb-more-btn" onclick="toggleNotes()" style="display:none;">Show more notes</button>
       </div>
-      <div id="gb-list"></div>
-      <button class="show-more-btn" id="gb-more-btn" onclick="toggleNotes()" style="display:none;">Show more notes</button>
-    </div>
     </div>
   </div>
 </section>
@@ -454,29 +482,29 @@
 <section id="connect">
   <div class="wrap">
     <div class="section-head accordion-head" onclick="toggleSection('connect-body','connect-chev')" style="margin-bottom:16px;">
-      <div class="section-tag">Get in Touch</div>
+      <div class="section-tag" data-en="Get in Touch" data-id="Hubungi Saya">Get in Touch</div>
       <span class="accordion-chevron" id="connect-chev">▾</span>
     </div>
     <div class="accordion-body" id="connect-body">
-    <div class="cta-block">
-      <h2 data-en="Let's build Diesnat 2026 together" data-id="Mari membangun Diesnat 2026 bersama">Let's build Diesnat 2026 together</h2>
-      <p data-en="I'd love the chance to bring this mix of systems thinking and stage energy to the committee. Reach out — I'll bring the run-of-show doc." data-id="Saya ingin sekali membawa perpaduan pemikiran sistematis dan energi panggung ini ke panitia. Hubungi saya — saya akan bawa run-of-show-nya.">I'd love the chance to bring this mix of systems thinking and stage energy to the committee. Reach out — I'll bring the run-of-show doc.</p>
-      <button class="btn btn-primary" onclick="document.getElementById('guestbook').scrollIntoView()" data-en="Get in touch" data-id="Hubungi saya">Get in touch</button>
-    </div>
-    <div class="contact-grid" id="contact-grid"></div>
+      <div class="cta-block">
+        <h2 data-en="Let's collaborate on your next project" data-id="Mari berkolaborasi pada proyek Anda berikutnya">Let's collaborate on your next project</h2>
+        <p data-en="Whether you need web development, event logistics management, or bilingual public speaking, feel free to reach out!" data-id="Baik Anda membutuhkan pengembangan web, manajemen logistik acara, atau public speaking dwibahasa, silakan hubungi saya!">Whether you need web development, event logistics management, or bilingual public speaking, feel free to reach out!</p>
+        <button class="btn btn-primary" onclick="document.getElementById('guestbook').scrollIntoView()" data-en="Contact Me" data-id="Hubungi Saya">Contact Me</button>
+      </div>
+      <div class="contact-grid" id="contact-grid"></div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div>© 2026 Radisty Kirana Dhisa Aqila · Built for the Diesnat Committee application</div>
-  <button class="admin-link" onclick="toggleAdmin()">＋ Manage content</button>
+  <div data-en="© 2026 Radisty Kirana Dhisa Aqila · Software Engineering &amp; Media Portfolio" data-id="© 2026 Radisty Kirana Dhisa Aqila · Portofolio Rekayasa Perangkat Lunak &amp; Media">© 2026 Radisty Kirana Dhisa Aqila · Software Engineering &amp; Media Portfolio</div>
+  <button class="admin-link" onclick="toggleAdmin()" data-en="＋ Manage content" data-id="＋ Kelola konten">＋ Manage content</button>
   <div class="wrap">
     <div class="admin-panel" id="admin-panel">
-      <h4>Add a leadership / work card</h4>
+      <h4>Add an experience / work card</h4>
       <div class="row">
-        <input id="a-title" placeholder="Title (e.g. Logistics Crew — XYZ Event)">
-        <input id="a-meta" placeholder="Meta (e.g. 2026 · City Level)">
+        <input id="a-title" placeholder="Title (e.g. Lead Developer)">
+        <input id="a-meta" placeholder="Meta (e.g. 2026 · Project)">
       </div>
       <div class="row">
         <select id="a-tag">
@@ -484,15 +512,15 @@
           <option value="leadership">Leadership</option>
           <option value="comms">Communication</option>
         </select>
-        <input id="a-tag-label" placeholder="Tag label shown (e.g. Logistics)">
+        <input id="a-tag-label" placeholder="Tag label (e.g. Web Dev)">
       </div>
-      <textarea id="a-desc" rows="2" placeholder="Short description"></textarea>
+      <textarea id="a-desc" rows="2" placeholder="Description"></textarea>
       <button class="btn btn-ghost" style="margin-top:10px;" onclick="addWork()">Add card</button>
 
       <h4 style="margin-top:26px;">Add an achievement</h4>
       <div class="row">
         <input id="ac-title" placeholder="Award title">
-        <input id="ac-sub" placeholder="Competition / event name">
+        <input id="ac-sub" placeholder="Event / Organization">
       </div>
       <div class="row">
         <input id="ac-year" placeholder="Year (e.g. 2026)">
@@ -503,9 +531,8 @@
           <option value="scholarship">Scholarship</option>
         </select>
       </div>
-      <input id="ac-cert" placeholder="Certificate image/PDF URL (optional, paste a hosted link)" style="width:100%; margin-bottom:10px;">
+      <input id="ac-cert" placeholder="Certificate Image/Link URL (optional)" style="width:100%; margin-bottom:10px;">
       <button class="btn btn-ghost" onclick="addAchievement()">Add achievement</button>
-      <div class="badge-note">Notes added here only persist inside this Claude preview. For the certificate to still show up once you deploy the site, add it directly in the code instead — see the "adding certificates" comment near <span class="mono">DEFAULT_ACH</span> in the script, and drop the image file in an <span class="mono">/assets/certificates</span> folder next to <span class="mono">index.html</span>.</div>
     </div>
   </div>
 </footer>
@@ -528,13 +555,24 @@ function setLang(l){
   document.querySelectorAll('[data-en]').forEach(el=>{
     el.innerHTML = el.getAttribute('data-'+l);
   });
+  
+  // Update dynamic input placeholders based on active language
+  if(l === 'id'){
+    document.getElementById('gb-name').placeholder = "Nama Anda";
+    document.getElementById('gb-role').placeholder = "Peran / Organisasi Anda";
+    document.getElementById('gb-msg').placeholder = "Tinggalkan pesan atau masukan 🌿";
+  } else {
+    document.getElementById('gb-name').placeholder = "Your name";
+    document.getElementById('gb-role').placeholder = "Your role / organization";
+    document.getElementById('gb-msg').placeholder = "Leave a message or feedback 🌿";
+  }
 }
 
 function getStoredTheme(){
-  try{ return localStorage.getItem('diesnat_theme'); }catch(e){ return null; }
+  try{ return localStorage.getItem('radisty_theme'); }catch(e){ return null; }
 }
 function storeTheme(t){
-  try{ localStorage.setItem('diesnat_theme', t); }catch(e){ /* ignore, e.g. sandboxed preview */ }
+  try{ localStorage.setItem('radisty_theme', t); }catch(e){}
 }
 function applyTheme(t){
   document.body.setAttribute('data-theme', t);
@@ -582,136 +620,125 @@ const LEVEL_META = {
 };
 
 const DEFAULT_WORK = [
-  {title:'Event Logistics Crew — BPJS Regional Event', meta:'Surabaya · Institutional', tag:'tech', tagLabel:'Logistics', desc:'Handled on-ground operational setup, material distribution, and behind-the-scenes execution for a regional institutional event — the work that makes a big event run on time.', link:'https://drive.google.com/drive/folders/18f4_ZHxhbINunx2mraZ5Kl36TcryO5H3?usp=sharing'},
-  {title:'Vice Chairman — Media Moklet (MeMo)', meta:'2026 – Present', tag:'leadership', tagLabel:'Systems', desc:"Co-leading internal operations for Moklet's student media body, automating content workflows through Notion so the team spends less time chasing status updates."},
-  {title:'Project Leader & Primary MC — SLC & Parents Talk', meta:'Student Led Conference', tag:'leadership', tagLabel:'Bilingual MC', desc:'Owned event planning end-to-end — stakeholder coordination, run-of-show, logistics — then anchored both programs bilingually (ID/EN) on stage.'},
-  {title:'English Competition Coach / Tutor', meta:'Ongoing', tag:'comms', tagLabel:'Coaching', desc:'Trains competition candidates in debate, speech, and storytelling — turning national-level competitive experience into a repeatable coaching framework.'},
-  {title:'Producer & On-Camera Reporter — Moklet Investigation (MOVE)', meta:'Editorial', tag:'comms', tagLabel:'Media', desc:"Manages editorial scripts and conducts high-profile interviews for Moklet's investigative video segment.", link:'https://drive.google.com/drive/folders/1BTyhfdKyFVarKtnYmhAyJp2RVD63g1oz?usp=drive_link'}
+  {title:'English Competition Coach & Tutor', meta:'Ongoing', tag:'comms', tagLabel:'Mentorship', desc:'Conducts intensive training programs for candidates preparing for English competitions in debate, speech, and storytelling.'},
+  {title:'Vice Chairman — Media Moklet (MeMo)', meta:'2026 – Present', tag:'leadership', tagLabel:'Systems Leadership', desc:'Co-lead internal operations and division communication. Implemented Notion systems to automate content workflows and team project tracking.'},
+  {title:'PIC Humas — Moklet Art Club (MAC)', meta:'2026 – Present', tag:'comms', tagLabel:'Public Relations', desc:'Managed external communications, media relations, and official outreach while coordinating alignment between internal committees, school administration, and external partners.'},
+  {title:'PIC Acara — Diklat Moklet Art Club (MAC)', meta:'2026', tag:'leadership', tagLabel:'Event Leadership', desc:'Oversee event conceptualization, rundown structuring, and technical execution for the art club’s orientation program, leading the team to ensure schedule adherence.'},
+  {title:'PIC Acara — PERJUSA Committee', meta:'2026', tag:'leadership', tagLabel:'Event Leadership', desc:'Managed the overall event agenda, rundown coordination, and execution for the school scout camp event (PERJUSA).'},
+  {title:'Sie Acara — Event Skill Lab', meta:'2026', tag:'leadership', tagLabel:'Event Planning', desc:'Designed event rundowns and interactive program flows to boost participant engagement, collaborating with cross-functional teams for seamless execution.'},
+  {title:'Event Logistics Crew — BPJS Regional Event', meta:'Surabaya · Institutional', tag:'tech', tagLabel:'Logistics Management', desc:'Handled on-ground operational setup, distribution logistics, and behind-the-scenes venue execution for a large-scale regional event.', link:'https://drive.google.com/drive/folders/18f4_ZHxhbINunx2mraZ5Kl36TcryO5H3?usp=sharing'},
+  {title:'Project Leader & Primary MC — SLC & Parents Talk', meta:'Student Led Conference (2025–2026)', tag:'leadership', tagLabel:'Project Lead & MC', desc:'Directed end-to-end event planning and anchored as primary English-Indonesian MC while managing engagement with institutional faculty and stakeholders.'},
+  {title:'Producer & On-Camera Reporter — Moklet Investigation (MOVE)', meta:'2025 – 2026', tag:'comms', tagLabel:'Broadcasting', desc:'Managed editorial script alignment and team coordination while hosting high-profile interviews as the primary presenter.'}
 ];
 
-// ── Adding certificates ──────────────────────────────────────────────
-// To attach a certificate/documentation to an achievement so it shows up
-// permanently (works even after deploying, no backend needed):
-//   1. Put the image or PDF file in a folder named "assets/certificates"
-//      right next to this index.html file.
-//   2. Set "cert" below to that relative path, e.g. "assets/certificates/nsdc-2026.jpg"
-//      — or paste any hosted image URL (e.g. from Google Drive "share" link, Imgur).
-//   3. Set "certType" to "image" or "pdf" (pdf just links out to open the file).
-// Leave cert:'' if you don't have documentation yet — it'll show a placeholder.
 const DEFAULT_ACH = [
-  {title:'4th Best Speaker', sub:'NSDC Debate', year:'2026', level:'city', cert:'', certType:'image', link:'https://drive.google.com/drive/folders/18f4_ZHxhbINunx2mraZ5Kl36TcryO5H3?usp=sharing'},
-  {title:'3rd Place Winner', sub:'ADVA JA Competition', year:'2026', level:'national', cert:'', certType:'image', link:'https://drive.google.com/file/d/FILE_ID/view?usp=sharing'},
-  {title:'Runner-Up 1 (Juara Harapan 1)', sub:'FLS3N Traditional Music', year:'2026', level:'city', cert:'', certType:'image', link:'https://drive.google.com/drive/folders/1I0H6ThYV3awP0mOTqibeoLWP0-_gFSc3?usp=drive_link'},
-  {title:'2nd Place Winner', sub:'Doremi English Debate Competition', year:'2025', level:'city', cert:'', certType:'image', link:'https://drive.google.com/file/d/FILE_ID/view?usp=sharing'},
-  {title:'Gold Medalist', sub:'National English & Science Olympiad', year:'2024', level:'national', cert:'', certType:'image', link:'https://drive.google.com/drive/folders/1VfFd_C_2XyiPnJ7CGWcFV-BXS1DQSeNX?usp=drive_link'},
-  {title:'Partial Scholarship Recipient', sub:'GlobalXtreme', year:'2025', level:'scholarship', cert:'', certType:'image', link:'https://drive.google.com/drive/folders/1oWiOTnpFHjZ6egdoQbPJ1AfgrxWW44Qq?usp=drive_link'}
+  {title:'4th Best Speaker (City Level)', sub:'National Schools Debating Championship (NSDC)', year:'2026', level:'city'},
+  {title:'3rd Place Winner (National Level)', sub:'ADVA JA Competition', year:'2026', level:'national'},
+  {title:'Runner-Up 1 / Juara Harapan 1 (City Level)', sub:'FLS3N Seni Musik Tradisional', year:'2026', level:'city'},
+  {title:'Flight To Morphoza Event MC', sub:'SMK Telkom Malang Main Stage', year:'2026', level:'school'},
+  {title:'Perjusa Event MC', sub:'SMK Telkom Malang', year:'2026', level:'school'},
+  {title:'2nd Place Winner', sub:'Doremi English Debate Competition (Internal SMK Telkom)', year:'2025', level:'school'},
+  {title:'Gold Medalist', sub:'National English Olympiad', year:'2024', level:'national'},
+  {title:'Gold Medalist', sub:'National Science Olympiad', year:'2024', level:'national'},
+  {title:'Partial Scholarship Recipient', sub:'GlobalXtreme Corporate Education Sponsorship', year:'2025', level:'scholarship'},
+  {title:'Semi-Finalist', sub:'Duta Pelajar Anti Narkoba', year:'2025', level:'city'},
+  {title:'Pangkalan Terfavorit (East Java Regional)', sub:'Laga Aksi 3.0 Scout Competition', year:'2025', level:'national'}
 ];
 
-// ── CV & Drive links ──────────────────────────────────────────────────
-// Replace the placeholder URLs below with your real, "Anyone with the
-// link can view" Google Drive / PDF links. That's it — the buttons in
-// the "CV & Portfolio Drive" section update automatically.
-const DOCS = [
-  {
-    icon:'📄', bg:'rgba(207,195,234,0.45)',
-    title:'Curriculum Vitae (CV)',
-    desc:'My full CV as a PDF — education, experience, and skills in one document.',
-    btnLabel:'View CV (PDF)',
-    url:'https://drive.google.com/drive/folders/13wHV6_pskE56M0Eboj_jQjeiop2OUwtj?usp=drive_link'
-  },
-  {
-    icon:'🗂️', bg:'rgba(169,196,165,0.4)',
-    title:'Portfolio Drive Folder',
-    desc:'Certificates, event documentation, and supporting files, all in one shared Drive folder.',
-    btnLabel:'Open Drive Folder',
-    url:'https://drive.google.com/drive/folders/18f4_ZHxhbINunx2mraZ5Kl36TcryO5H3?usp=drive_link'
-  }
+/* LINK FIXED DIRECTLY TO YOUR PUBLIC GOOGLE DRIVE FOLDER */
+const DEFAULT_DOCS = [
+  {title:'Curriculum Vitae', icon:'📄', desc:'Executive resume detailing Software Engineering background, leadership history, and achievements.', link:'https://drive.google.com/drive/folders/13wHV6_pskE56M0Eboj_jQjeiop2OUwtj'},
+  {title:'Portfolio Drive Repository', icon:'📁', desc:'Photos, project highlights, video presentations, and certificate files.', link:'https://drive.google.com/drive/folders/18f4_ZHxhbINunx2mraZ5Kl36TcryO5H3'}
 ];
 
-// ── Contact channels ──────────────────────────────────────────────────
-// Replace each "value" and "url" with your real contact details.
-// - For WhatsApp, url format is: https://wa.me/62XXXXXXXXXX (no + or leading 0)
-// - For Instagram/LinkedIn, use your full profile URL.
-// - For email, url format is: mailto:you@example.com
-const CONTACTS = [
-  {icon:'✉️', bg:'rgba(191,220,235,0.55)', label:'Email', value:'radistykda@email.com', url:'mailto:radistykda@email.com'}
+const DEFAULT_CONTACTS = [
+  {icon:'💬', label:'WhatsApp', value:'+62 895-2103-0102', link:'https://wa.me/6289521030102'},
+  {icon:'📸', label:'Instagram', value:'@radistykda', link:'https://instagram.com/radistykda'},
+  {icon:'✍️', label:'Writing Account', value:'@y.rlogs', link:'https://instagram.com/y.rlogs'},
+  {icon:'💼', label:'LinkedIn', value:'radistykda', link:'https://linkedin.com/in/radistykda'},
+  {icon:'✉️', label:'Email', value:'radistykda@gmail.com', link:'mailto:radistykda@gmail.com'}
 ];
 
-let workData = [];
-let achData = [];
 let activeFilter = 'all';
-let adminOn = false;
-
-async function safeGet(key, fallback){
-  try{
-    const res = await window.storage.get(key, true);
-    return res ? JSON.parse(res.value) : fallback;
-  }catch(e){ return fallback; }
-}
-async function safeSet(key, value){
-  try{ await window.storage.set(key, JSON.stringify(value), true); }catch(e){ console.error('storage set failed', e); }
-}
+let workData = JSON.parse(localStorage.getItem('radisty_work')) || DEFAULT_WORK;
+let achData = JSON.parse(localStorage.getItem('radisty_ach')) || DEFAULT_ACH;
+let notesData = JSON.parse(localStorage.getItem('radisty_notes')) || [
+  {name:'Portfolio Reviewer', role:'Visitor', msg:'Impressive combination of web development and public speaking achievements!', time:'Just now'}
+];
+let showAllNotes = false;
 
 function renderFilters(){
-  const wrap = document.getElementById('filters');
-  const opts = [{id:'all', label:'All'}, {id:'tech', label:'Tech & Systems'}, {id:'leadership', label:'Leadership'}, {id:'comms', label:'Communication'}];
-  wrap.innerHTML = opts.map(o=>`<button class="filter-pill ${activeFilter===o.id?'active':''}" onclick="setFilter('${o.id}')">${o.label}</button>`).join('');
+  const fContainer = document.getElementById('filters');
+  const filters = [
+    {id:'all', labelEn:'All Experience', labelId:'Semua Pengalaman'},
+    {id:'tech', labelEn:'Tech & Systems', labelId:'Teknologi & Sistem'},
+    {id:'leadership', labelEn:'Leadership', labelId:'Kepemimpinan'},
+    {id:'comms', labelEn:'Communication', labelId:'Komunikasi'}
+  ];
+  fContainer.innerHTML = filters.map(f => `
+    <button class="filter-pill ${activeFilter===f.id?'active':''}" onclick="setFilter('${f.id}')">${LANG.current==='id'?f.labelId:f.labelEn}</button>
+  `).join('');
 }
-function setFilter(f){ activeFilter = f; renderFilters(); renderWork(); }
+
+function setFilter(f){
+  activeFilter = f;
+  renderFilters();
+  renderWork();
+}
 
 function renderWork(){
   const grid = document.getElementById('work-grid');
-  const rows = workData.filter(w => activeFilter==='all' || w.tag===activeFilter);
-  grid.innerHTML = rows.map((w, idx)=>{
-    const meta = TAG_META[w.tag] || TAG_META.tech;
-    return `<div class="db-card">
-      <button class="db-remove" onclick="removeWork(${workData.indexOf(w)})">remove</button>
-      <div class="db-meta">${w.meta}</div>
+  const filtered = activeFilter === 'all' ? workData : workData.filter(w => w.tag === activeFilter);
+  grid.innerHTML = filtered.map((w, idx) => `
+    <div class="db-card">
+      <button class="db-remove" onclick="removeWork(${idx})">✕ Remove</button>
       <h3>${w.title}</h3>
+      <div class="db-meta">${w.meta}</div>
       <p>${w.desc}</p>
-      <div class="tags"><span class="tag-chip ${meta.class}" style="margin:0;">${w.tagLabel}</span></div>
-    </div>`;
-  }).join('') || '<p class="gb-empty">No entries in this category yet.</p>';
-  document.body.classList.toggle('admin-on', adminOn);
+      <div class="tags">
+        <span class="pill ${TAG_META[w.tag]?.class || 'pill-sage'}">${w.tagLabel || TAG_META[w.tag]?.label}</span>
+      </div>
+      ${w.link ? `<a href="${w.link}" target="_blank" class="drive-btn">${LANG.current==='id'?'Buka Folder Acara ↗':'View Event Folder ↗'}</a>` : ''}
+    </div>
+  `).join('');
 }
 
-function renderAch(){
+function renderAchievements(){
   const list = document.getElementById('ach-list');
-  list.innerHTML = achData.map((a, i)=>{
-    const lv = LEVEL_META[a.level] || LEVEL_META.school;
-    const clickHandler = a.link ? `onclick="window.open('${a.link}', '_blank')"` : `onclick="openCertModal(${i})"`;
-    const style = a.link ? 'cursor:pointer;' : '';
-    return `<div class="ach-row" style="${style}" ${clickHandler}>
-      <button class="medal medal-btn" style="background:rgba(0,0,0,0.04);" onclick="event.stopPropagation(); openCertModal(${i})" title="View certificate">${lv.icon}</button>
-      <div>
-        <div class="ach-title">${a.title}</div>
-        <div class="ach-sub">${a.sub}</div>
+  list.innerHTML = achData.map((a, idx) => {
+    const meta = LEVEL_META[a.level] || LEVEL_META.city;
+    return `
+      <div class="ach-row ${a.cert?'has-cert':''}" ${a.cert?`onclick="openCertModal('${a.title}','${a.sub}','${a.cert}')"`:''}>
+        <div class="medal">${meta.icon}</div>
+        <div>
+          <div class="ach-title">${a.title}</div>
+          <div class="ach-sub">${a.sub}</div>
+        </div>
+        <div class="ach-year">${a.year}</div>
+        <div><span class="pill ${meta.class}">${meta.label}</span></div>
+        <button class="ach-remove" onclick="event.stopPropagation(); removeAchievement(${idx})">✕</button>
       </div>
-      <span class="pill ${lv.class} ach-level">${lv.label}</span>
-      <span class="ach-year">${a.year} <button class="ach-remove" onclick="removeAch(${i})">✕</button></span>
-    </div>`;
-  }).join('') || '<p class="gb-empty">No achievements yet.</p>';
+    `;
+  }).join('');
 }
 
 function renderDocs(){
   const grid = document.getElementById('doc-grid');
-  if(!grid) return;
-  grid.innerHTML = DOCS.map(d=>`
+  grid.innerHTML = DEFAULT_DOCS.map(d => `
     <div class="doc-card">
-      <div class="doc-icon" style="background:${d.bg};">${d.icon}</div>
+      <div class="doc-icon" style="background:var(--pill-sage-bg); color:var(--sage-deep);">${d.icon}</div>
       <h3>${d.title}</h3>
       <p>${d.desc}</p>
-      <a class="btn btn-primary" href="${d.url}" target="_blank" rel="noopener">${d.btnLabel} ↗</a>
+      <a href="${d.link}" target="_blank" class="btn btn-primary" style="text-decoration:none;">${LANG.current==='id'?'Buka Dokumen ↗':'Open Document ↗'}</a>
     </div>
   `).join('');
 }
 
 function renderContacts(){
   const grid = document.getElementById('contact-grid');
-  if(!grid) return;
-  grid.innerHTML = CONTACTS.map(c=>`
-    <a class="contact-card" href="${c.url}" target="_blank" rel="noopener">
-      <div class="contact-icon" style="background:${c.bg};">${c.icon}</div>
+  grid.innerHTML = DEFAULT_CONTACTS.map(c => `
+    <a href="${c.link}" target="_blank" class="contact-card">
+      <div class="contact-icon">${c.icon}</div>
       <div>
         <div class="contact-label">${c.label}</div>
         <div class="contact-value">${c.value}</div>
@@ -720,125 +747,143 @@ function renderContacts(){
   `).join('');
 }
 
-function openCertModal(i){
-  const a = achData[i];
-  document.getElementById('modal-title').textContent = a.title;
-  document.getElementById('modal-sub').textContent = a.sub + (a.year ? ' · '+a.year : '');
+function renderNotes(){
+  const list = document.getElementById('gb-list');
+  const btn = document.getElementById('gb-more-btn');
+  const visible = showAllNotes ? notesData : notesData.slice(0, 3);
+  
+  if(notesData.length === 0){
+    list.innerHTML = `<div style="color:var(--ink-soft); font-size:0.9rem;">No notes left yet. Be the first!</div>`;
+    btn.style.display = 'none';
+    return;
+  }
+
+  list.innerHTML = visible.map(n => `
+    <div class="gb-note">
+      <strong>${n.name}</strong> ${n.role ? `<span style="color:var(--ink-soft)">(${n.role})</span>` : ''}
+      <div style="margin-top:4px;">${n.msg}</div>
+      <div class="gb-meta">${n.time}</div>
+    </div>
+  `).join('');
+
+  if(notesData.length > 3){
+    btn.style.display = 'inline-block';
+    btn.textContent = showAllNotes ? (LANG.current==='id'?'Tampilkan lebih sedikit':'Show less notes') : (LANG.current==='id'?`Tampilkan semua ${notesData.length} pesan`:`Show all ${notesData.length} notes`);
+  } else {
+    btn.style.display = 'none';
+  }
+}
+
+function toggleNotes(){
+  showAllNotes = !showAllNotes;
+  renderNotes();
+}
+
+function submitNote(){
+  const nameEl = document.getElementById('gb-name');
+  const roleEl = document.getElementById('gb-role');
+  const msgEl = document.getElementById('gb-msg');
+
+  if(!nameEl.value.trim() || !msgEl.value.trim()){
+    alert(LANG.current==='id'?'Harap isi nama dan pesan Anda!':'Please enter your name and a message!');
+    return;
+  }
+
+  const newNote = {
+    name: nameEl.value.trim(),
+    role: roleEl.value.trim(),
+    msg: msgEl.value.trim(),
+    time: 'Just now'
+  };
+
+  notesData.unshift(newNote);
+  localStorage.setItem('radisty_notes', JSON.stringify(notesData));
+  
+  nameEl.value = '';
+  roleEl.value = '';
+  msgEl.value = '';
+
+  renderNotes();
+}
+
+function openCertModal(title, sub, certUrl){
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-sub').textContent = sub;
   const content = document.getElementById('modal-content');
-  if(a.cert){
-    if(a.certType === 'pdf'){
-      content.innerHTML = `<a class="doc-link" href="${a.cert}" target="_blank" rel="noopener">Open certificate (PDF) ↗</a>`;
-    }else{
-      content.innerHTML = `<img src="${a.cert}" alt="${a.title} certificate">`;
-    }
-  }else{
-    content.innerHTML = `<div class="modal-empty">Documentation for this achievement hasn't been added yet.</div>`;
+  if(certUrl.endsWith('.pdf')){
+    content.innerHTML = `<a href="${certUrl}" target="_blank" style="color:var(--sage-deep); font-weight:700;">Open PDF Certificate ↗</a>`;
+  } else {
+    content.innerHTML = `<img src="${certUrl}" alt="Certificate Preview"><a href="${certUrl}" target="_blank" style="display:inline-block; margin-top:8px; color:var(--sage-deep); font-weight:700;">Open full size ↗</a>`;
   }
   document.getElementById('cert-modal').classList.add('open');
 }
-function closeCertModal(){ document.getElementById('cert-modal').classList.remove('open'); }
 
-async function removeWork(i){
-  workData.splice(i,1);
-  await safeSet('diesnat_work', workData);
-  renderWork();
-}
-async function removeAch(i){
-  achData.splice(i,1);
-  await safeSet('diesnat_achievements', achData);
-  renderAch();
-}
-
-async function addWork(){
-  const title = document.getElementById('a-title').value.trim();
-  const meta = document.getElementById('a-meta').value.trim();
-  const tag = document.getElementById('a-tag').value;
-  const tagLabel = document.getElementById('a-tag-label').value.trim() || TAG_META[tag].label;
-  const desc = document.getElementById('a-desc').value.trim();
-  if(!title || !desc){ alert('Please add at least a title and description.'); return; }
-  workData.unshift({title, meta, tag, tagLabel, desc});
-  await safeSet('diesnat_work', workData);
-  ['a-title','a-meta','a-tag-label','a-desc'].forEach(id=>document.getElementById(id).value='');
-  renderWork();
-}
-async function addAchievement(){
-  const title = document.getElementById('ac-title').value.trim();
-  const sub = document.getElementById('ac-sub').value.trim();
-  const year = document.getElementById('ac-year').value.trim();
-  const level = document.getElementById('ac-level').value;
-  const cert = document.getElementById('ac-cert').value.trim();
-  if(!title || !sub){ alert('Please add at least a title and event name.'); return; }
-  achData.unshift({title, sub, year, level, cert, certType: cert.toLowerCase().endsWith('.pdf') ? 'pdf' : 'image'});
-  await safeSet('diesnat_achievements', achData);
-  ['ac-title','ac-sub','ac-year','ac-cert'].forEach(id=>document.getElementById(id).value='');
-  renderAch();
+function closeCertModal(){
+  document.getElementById('cert-modal').classList.remove('open');
 }
 
 function toggleAdmin(){
-  if(!adminOn){
-    const pass = prompt('Enter the content passcode:');
-    if(pass !== 'diesnat2026'){ if(pass!==null) alert('Incorrect passcode.'); return; }
-  }
-  adminOn = !adminOn;
-  document.getElementById('admin-panel').classList.toggle('open', adminOn);
-  document.body.classList.toggle('admin-on', adminOn);
+  document.body.classList.toggle('admin-on');
+  document.getElementById('admin-panel').classList.toggle('open');
 }
 
-let gbData = [];
-let gbExpanded = false;
-async function loadGuestbook(){
-  gbData = await safeGet('diesnat_guestbook', []);
-  renderGuestbook();
-}
-function renderGuestbook(){
-  const list = document.getElementById('gb-list');
-  const moreBtn = document.getElementById('gb-more-btn');
-  if(gbData.length===0){
-    list.innerHTML = '<p class="gb-empty" style="margin-top:16px;">No notes yet — be the first to say hello.</p>';
-    moreBtn.style.display = 'none';
-    return;
-  }
-  const ordered = gbData.slice().reverse();
-  const visible = gbExpanded ? ordered : ordered.slice(0, 3);
-  list.innerHTML = visible.map(n=>`
-    <div class="gb-note">
-      <div>${escapeHtml(n.msg)}</div>
-      <div class="gb-meta">— ${escapeHtml(n.name)}${n.role? ' · '+escapeHtml(n.role):''} · ${n.date}</div>
-    </div>`).join('');
-  if(ordered.length > 3){
-    moreBtn.style.display = 'inline-block';
-    moreBtn.textContent = gbExpanded ? 'Show fewer notes' : `Show more notes (${ordered.length - 3} more)`;
-  }else{
-    moreBtn.style.display = 'none';
-  }
-}
-function toggleNotes(){ gbExpanded = !gbExpanded; renderGuestbook(); }
-function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+function addWork(){
+  const title = document.getElementById('a-title').value;
+  const meta = document.getElementById('a-meta').value;
+  const tag = document.getElementById('a-tag').value;
+  const tagLabel = document.getElementById('a-tag-label').value;
+  const desc = document.getElementById('a-desc').value;
 
-async function submitNote(){
-  const name = document.getElementById('gb-name').value.trim() || 'Anonymous';
-  const role = document.getElementById('gb-role').value.trim();
-  const msg = document.getElementById('gb-msg').value.trim();
-  if(!msg){ alert('Write a short message first 🌿'); return; }
-  gbData.push({name, role, msg, date: new Date().toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'})});
-  await safeSet('diesnat_guestbook', gbData);
-  document.getElementById('gb-name').value='';
-  document.getElementById('gb-role').value='';
-  document.getElementById('gb-msg').value='';
-  renderGuestbook();
-}
+  if(!title || !desc) return alert('Please enter a title and description.');
 
-async function init(){
-  workData = await safeGet('diesnat_work', DEFAULT_WORK);
-  achData = await safeGet('diesnat_achievements', DEFAULT_ACH);
-  renderFilters();
+  workData.unshift({title, meta, tag, tagLabel, desc});
+  localStorage.setItem('radisty_work', JSON.stringify(workData));
   renderWork();
-  renderAch();
-  renderDocs();
-  renderContacts();
-  await loadGuestbook();
+
+  document.getElementById('a-title').value = '';
+  document.getElementById('a-meta').value = '';
+  document.getElementById('a-tag-label').value = '';
+  document.getElementById('a-desc').value = '';
 }
-init();
+
+function removeWork(idx){
+  workData.splice(idx, 1);
+  localStorage.setItem('radisty_work', JSON.stringify(workData));
+  renderWork();
+}
+
+function addAchievement(){
+  const title = document.getElementById('ac-title').value;
+  const sub = document.getElementById('ac-sub').value;
+  const year = document.getElementById('ac-year').value;
+  const level = document.getElementById('ac-level').value;
+  const cert = document.getElementById('ac-cert').value;
+
+  if(!title || !sub) return alert('Please enter title and event name.');
+
+  achData.unshift({title, sub, year, level, cert});
+  localStorage.setItem('radisty_ach', JSON.stringify(achData));
+  renderAchievements();
+
+  document.getElementById('ac-title').value = '';
+  document.getElementById('ac-sub').value = '';
+  document.getElementById('ac-year').value = '';
+  document.getElementById('ac-cert').value = '';
+}
+
+function removeAchievement(idx){
+  achData.splice(idx, 1);
+  localStorage.setItem('radisty_ach', JSON.stringify(achData));
+  renderAchievements();
+}
+
+// Initial Boot
+renderFilters();
+renderWork();
+renderAchievements();
+renderDocs();
+renderContacts();
+renderNotes();
 </script>
 </body>
 </html>
